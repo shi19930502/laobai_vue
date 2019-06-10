@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app" >
+    <students></students>
+</div>
+<script src="js/ajax.js"></script>
+<script src="js/vue.js"></script>
+<script type="text/x-template" id="students">
+    <div>
+        <add :show="show"></add>
+        <update :show="show" :student="student"></update>
+        <search></search>
+        <student-list :updateStu="updateStu" :show="show" :data="data"></student-list>
+        <page :show="show" :data="data"></page>
+    </div>
+</script>
+<script type="text/x-template" id="input-template">
+    <div>
+        <label><slot></slot></label>
+        <input :value="value" @input="updateValue" :type="type"/>
+    </div>
+</script>
+<script type="text/x-template" id="radio-template">
+    <div>
+        <input type="radio" name="gender" @change="sex" :checked="value=='男'"  value="男"/><label>男</label>
+        <input type="radio" name="gender" @change="sex" :checked="value=='女'" value="女"/><label>女</label>
+    </div>
+</script>
+<script type="text/x-template" id="search-template">
+    <div>
+        <h4>搜索</h4>
+        <select name="" v-model="value" id="" @change="selectChange">
+            <option value="姓名">姓名</option>
+            <option value="年龄">年龄</option>
+            <option value="性别">性别</option>
+        </select>
+        <input v-model="text" type="text"/>
+        <input type="button" @click="searchBtn" value="确定"/>
+    </div>
+</script>
+<script type="text/x-template" id="select-template">
+    <div>
+
+    </div>
+</script>
+<script type="text/x-template" id="add-template">
+    <div>
+        <h2>增加</h2>
+        <input-element v-model="name" type="text">姓名</input-element>
+        <input-element v-model="age" type="text">年龄</input-element>
+        <radio v-model="gender"></radio>
+        <input type="button" @click="add" value="增加"/>
+    </div>
+</script>
+<script type="text/x-template" id="update-template">
+    <div>
+        <h2>修改</h2>
+        <input-element v-model="student.name" type="text">姓名</input-element>
+        <input-element v-model="student.age" type="text">年龄</input-element>
+        <radio v-model="student.gender"></radio>
+        <!--v-model其实是 :value="student.gender" 和 @input="updateValue"的拆分-->
+        <input type="button" @click="update" value="修改"/>
+    </div>
+</script>
+<script type="text/x-template" id="page-template">
+    <div>
+        <a v-if="data.curpage > 1" @click="show(data.curpage-1)">上一页</a>
+        <label v-for="i in data.maxpage" @click="show(i)">{{i}}</label>
+        <a v-if="data.curpage < data.maxpage" @click="show(data.curpage+1)">下一页</a>
+    </div>
+</script>
+<script type="text/x-template" id="table-template">
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+           <tbody>
+               <tr v-for="stu in data.rows">
+                   <td>{{stu.name}}</td>
+                   <td>{{stu.age}}</td>
+                   <td>{{stu.gender}}</td>
+                   <td><input type="button" @click="update(stu._id)" value="修改"/> <input type="button" @click="del(stu._id)" value="删除"/></td>
+               </tr>
+           </tbody>
+
+        </table>
+    </div>
+</script>
+<script src="js/students.js" ></script>
+</body>
+</html>

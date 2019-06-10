@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <login></login>
+</div>
+</body>
+<script src="js/ajax.js"></script>
+<script src="js/vue.js"></script>
+<script type="text/x-template" id="input-template">
+    <div>
+        <label><slot></slot></label>
+        <input :type="type" :value="value" @input="updateValue"/>
+    </div>
+</script>
+<script type="text/x-template" id="login-template">
+    <div>
+        <h2>登陆</h2>
+        <input-element v-model="username.value" type="text">账号:</input-element>
+        <input-element v-model="pwd.value" type="password">密码:</input-element>
+        <input type="button" value="登陆" @click="loginBtn"/>
+    </div>
+</script>
+<script src="js/login.js"></script>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,div{ margin:0; padding:0;position:relative;}
+        /*div{ height:200px; color:#F00;}*/
+        .left{ float:left; width:100px; background:#00f; _margin-right:-3px;}
+        .right{ float:right; width:100px; background:#0f0; _margin-left:-3px;}
+        .center{ background:#333; margin:0 100px; _margin:0 97px;}
+        .top{height:100px;width:100%;background-color: blue;}
+        .down{height:100px;width:100%;background-color: red;position: relative;bottom: 0px}
+        .twoCenter{width:100%; margin:10px auto;height:90%;position:relative }
+    </style>
+</head>
+<body>
+
+<div class="left">left</div>
+<div class="right">right</div>
+<div class="center">center</div>
+<input type="text"/>
+<input type="checkbox" checked="true"/>
+<div class="top">上</div>
+<div class="twoCenter">中</div>
+<div class="down">下</div>
+
+<ul id="ul1">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+<!--<div style="width:100px; height:500px; float:left; background-color:#0F0;"></div>-->
+<!--<div style="width:auto; height:500px; background-color:#00F; float:left; color:#FFF;">这里的内容决定宽度</div>-->
+<!--<div style="width:100px; height:500px; float:left; background-color:#639;"></div>-->
+<script>
+    function getVal(){
+        var a = document.getElementsByTagName('input');  //找到所有input
+        var checkboxArr = []
+        console.log(a[0].getAttribute('type'))
+        for(var i = 0; i < a.length; i++){
+            if(a[i].getAttribute('type')==='checkbox'){  //通过属性节点查找
+                checkboxArr.push(a[i])
+            }
+        }
+        console.log(checkboxArr.length);
+    }
+    getVal();
+    var li=document.getElementsByTagName('li');
+    for(var content=0;content<li.length;content++){
+        (function (content) {
+            console.log(content);
+            li[content].onclick= function () {
+                console.log(content)
+            }
+        })(content);
+//        function Co(content){
+//            li[content].onclick= function () {
+//                console.log(content)
+//            }
+//        }
+//        Co(content);
+    }
+    console.log(content)
+    var arr=[1,2,3]
+    arr=[1,2,3,4]
+    var a, b=false,c=3;
+    console.log(a=b||c)
+    var content=0;
+    function A(){
+        content++
+    }
+//    A()
+    console.log(content)
+    function getCount(){
+        content--
+        return content;
+    }
+    A()
+    console.log(content)
+    function fn(){
+        console.log(arguments)
+    }
+    fn()
+    function Student(name,age){
+       this.name = name;
+       this.age = age;
+       this.sayHello = function(){
+          console.log('我是'+this.name+'今年'+this.age+'岁')
+       }
+     }
+     var stu1 = new Student('wang5',1);
+     stu1.sayHello()
+    var bol
+    console.log(typeof bol)
+    console.log(    Object.prototype.toString.call('a'))
+    function fn1(a){
+        console.log(a)
+    }
+    fn1(1)
+    fn1(2)
+    function B(){
+        console.log(a)
+    }
+    function fnCallBack(){
+        B();
+        console.log(2)
+        var input=document.getElementsByTagName('input');
+        console.log(input[0])
+    }
+    fnCallBack()
+    function B(){alert("123")}
+//    setTimeout(a,1000)
+    setTimeout(B,5000)
+    function add(){
+        var sum = 0;
+        for(var i = 0 ; i < arguments.length ; i++){
+            sum += arguments[i];
+        }
+        console.log(Array.prototype.slice.call(arguments))
+        console.log(typeof arguments.length)
+        return sum
+    }
+    console.log(add(3,5,7,9));  //24
+
+        var c = [1,2,3];
+
+        var a = [1,2,3];
+        document.write(c.concat(4,5));
+
+        console.log(c.concat(4,5));
+    var [x,y,z] = [5,6,7,8];
+    console.log(x,y,z);
+
+    var myArr=['a','b','c','d']
+//    myArr.length=0
+    console.log(myArr)
+    myArr.splice(2,1,'e','f')
+    console.log(myArr)
+    for(var i = 3 ; i <= 100 ; i++ ){
+        for(var j = 2 ;j <i ; j++){
+            if(i % j === 0){
+                break
+            }else if(j===i-1){  //是否最后一项
+                console.log('i',i);
+            }
+        }
+    }
+    for(var m=2;m<=100;m++){
+        var num=0;
+        for(var n=2;n<=m;n++){
+            if(m%n==0){
+                num++;
+            }
+        }
+        if(num<2){
+            console.log('m',m)
+        }
+    }
+    var listOfLi = document.getElementsByTagName('li')
+    var ul1 = document.getElementById('ul1')
+    ul1.addEventListener('click',function(e){
+        console.log('e',e.target)
+        for(var i = 0 ; i < listOfLi.length ; i++){
+            if(listOfLi[i]==e.target){
+                alert(i);
+            }
+        }
+    },false)
+    var strlength='abcde'
+    console.log(strlength.length);
+
+    var bol=false?console.log('d'):console.log('s')
+
+
+
+
+</script>
+</body>
+</html>

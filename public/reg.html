@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="stu">
+    <input type="button" @click="btn" value="计数器"/>
+    <span v-if="isShow">{{info}}</span>
+    <input-element>自己的测试:</input-element>
+</div>
+
+<div>
+    <reg></reg>
+    <h1>ceshi</h1>
+</div>
+
+<div id="reg">
+    <reg></reg>
+</div>
+<script src="js/ajax.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/x-template" id="reg-template">
+    <div>
+        <h3>注册</h3>
+        <input-element v-model="username.value" @validate="validateText" :info="username.info" name=":" type="text">用户名</input-element>
+        <input-element v-model="pwd.value" ref="pwd" @validate="validatePwd" :info="pwd.info" name=":" type="password">密码</input-element>
+        <input-element  @validate="validateTwoPwd" :info="twoPwd.info" name=":" type="password">确认密码</input-element>
+        <input-element v-model="email.value" @validate="validateEmail" :info="email.info" name=":" type="text">email</input-element>
+        <input type="button" @click="reg" value="注册"/>
+    </div>
+</script>
+<script type="text/x-template" id="input-template">
+    <div>
+        <!--slot相当于那个children，获取中间的内容-->
+        <label><slot></slot>{{name}}</label>
+        <input ref="input" :type="type" @blur="onBlur" :value="value" @input="updateValue"/>
+        <span class="red">{{info}}</span>
+    </div>
+</script>
+<script src="js/reg.js"></script>
+</body>
+</html>
